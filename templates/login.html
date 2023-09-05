@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  {% load static %}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <style>
+    .login {
+      margin-left: 37vw;
+      margin-right: 40vw;
+      margin-top: 12vw;
+      background-color: white;
+      border-radius: 15px;
+    }
+
+    body {
+      font-family: 'Times New Roman', Times, serif;
+      background-image: url('{% static "images/sec.png" %}');
+      background-attachment: fixed;
+      background-repeat: no-repeat;
+      background-size: 100vw 100vh;
+    }
+  </style>
+</head>
+
+<body>
+
+
+  <div>
+    <!-- <h3 style="color: white; margin-top: 25vw; margin-left: 20vw;" >Make a bold decision today <br>
+        and start a new fresh <br>
+        tomorrow
+    </h3> -->
+  </div>
+ 
+    <nav class="navbar navbar-expand-md bg-dark navbar-dark"><b>
+      <!-- Brand -->
+      {% comment %} <a class="navbar-brand" href="{% url 'home' %}">Home</a> {% endcomment %}
+
+      <!-- Toggler/collapsibe Button -->
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- Navbar links -->
+      <div class="collapse navbar-collapse" id="collapsibleNavbar">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'home' %}">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'signin1' %}">Signin</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'signup'%}">Signup</a>
+          </li>
+        </ul>
+      </div></b>
+    </nav>
+    {% for message in messages %}
+    <h5>
+        <div  style="width: 20%; color: rgb(165, 42, 42); margin-left: 25vw; margin-top: 5vw; background-color: yellow;">
+            {{ message }}
+        </div>
+    </h5>
+        {% endfor %}
+    </div>
+
+    <div class="login"><br>
+      <h2 style="text-align: center;"> <b>Login</b></h2>
+      <div class="card-body">
+        <form action="{% url 'signin2' %}" method='post'>
+          {% csrf_token %}
+          <div class="was-validated">
+
+
+            <div class="form-group">
+              <input class="form-control" type="text" name="username" id="username" placeholder="Enter User Name"
+                required>
+            </div><br>
+
+            <div class="form-group">
+              <input class="form-control" type="password" name="password" id="password" placeholder="Enter Password"
+                required>
+            </div><br>
+
+
+            <input type="submit"  class="btn btn-outline-secondary"><br>
+            <br>
+
+          </div>
+        </form>
+      </div>
+    </div>
+
+</body>
+
+</html>

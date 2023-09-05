@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+        integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <title>Edit Student Details</title>
+    <style>
+        /* body {
+            font-family: 'Times New Roman', Times, serif;
+        } */
+
+        form {
+            width: 20%;
+            margin: auto;
+
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 2vw;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>Edit Student Details</h2><br><br>
+    <form action="{% url 'editstudenturl' stud.id %}" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="name">Student Name:</label>
+            <input class="form-control" type="text" name="name" id="name" value="{{ stud.student_name }}" required>
+        </div>
+        <div class="form-group">
+            <label for="address">Student Address:</label>
+            <input class="form-control" type="text" name="address" id="address" value="{{ stud.student_address }}"
+                required>
+        </div>
+        <div class="form-group">
+            <label for="age">Student Age:</label>
+            <input class="form-control" type="number" name="age" id="age" value="{{ stud.student_age }}" required>
+        </div>
+        <div class="form-group">
+            <label for="date">Joining Date:</label>
+            <input class="form-control" type="date" name="date" id="date" value="{{ stud.joining_date|date:'Y-m-d' }}"
+                required>
+        </div><br>
+
+        <div class="form-group">
+            <label for="course">Course:</label>
+            <select name="course" id="course" class="form-control">
+                <option value="{{stud.course.id}}" hidden>{{stud.course.course_name}}</option> 
+              {% for c in course  %}
+              <option value="{{c.id}}">{{c.course_name}}</option>
+              {% endfor %}
+          </select>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-secondary" style="margin-top: 2vw;"> Save </button>
+    </form>
+
+</body>
+
+</html>

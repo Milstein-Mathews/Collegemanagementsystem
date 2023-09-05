@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load static %}
+    <title></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <style>
+        a {
+            color: white;
+            font-size: 1.7vw;
+            font-family: 'Times New Roman', Times, serif;
+        }
+
+        .container-fluid {
+            margin-left: 12vw;
+            margin-right: 1vw;
+            margin-top: 6vw;
+            color: black;
+            font-family: 'Times New Roman', Times, serif;
+        }
+        img {
+        align-items: flex-start;
+        display: grid;
+        image-rendering: inherit;
+        mix-blend-mode: darken;
+        height: 200px;
+    }
+
+        body {
+            background-color: rgb(122, 122, 122);
+        }
+    </style>
+
+</head>
+
+<body>
+    
+
+      {% for message in messages %}
+      <h5>
+          <div  style="width: 14%; color: rgb(165, 42, 42); margin-left: 35vw; margin-top: 5vw; background-color: yellow;">
+              {{ message }}
+          </div>
+      </h5>
+          {% endfor %}
+      </div>
+
+    {% block content %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col">
+                <a href="{% url 'edit_teacher' %}"><img src="{{'static/images/teacherlogo0.jpeg'}}" alt=""
+                        style="width: 20vw;" height="150vw"></a>
+                <h5 style="margin-left: 8vw; margin-top: 1vw;">Edit Profile</h5>
+            </div>
+            <div class="col">
+                <a href="{% url 'profile' %}"><img src="{{'static/images/teacherlogo01.png'}}" alt=""
+                        style="width: 20vw;"></a>
+                <h5 style="margin-left: 50px;  margin-top: 1vw;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;See Profile</h5>
+            </div>
+        </div><br>
+        
+    </div>
+    {% endblock %}
+
+    <a href="{% url 'logout' %}" class="btn btn-outline-light text-center" style="margin-left:45vw; margin-top: 8vw;"><b>Logout</b></a>
+</body>
+
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+        integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <title>Student Details</title>
+    <style>
+        body {
+
+            font-family: 'Times New Roman', Times, serif;
+            background-color:aliceblue;
+
+        }
+
+        .table {
+            font-size: 1.5vw;
+            margin-top: 1vw;
+        }
+
+        h2 {
+            font-size: 3vw;
+
+        }
+    </style>
+</head>
+
+<body>
+
+    <center>
+        <h2><b>Student Details</b></h2><br>
+        <table class="table table-borderless table-striped table-hover table-bordered ">
+            <thead class="thead-primary">
+                <tr>
+                    <td>Student Name</td>
+                    <td>Address</td>
+                    <td>Age</td>
+                    <td>Joining Date</td>
+                    <td>Course</td>
+                    <td>Course Fee</td>
+                    <td>Action</td>
+                </tr>
+            </thead>
+            <tbody>
+                {% for s in students %}
+                <tr>
+                    <td>{{s.student_name}}</td>
+                    <td>{{s.student_address}}</td>
+                    <td>{{s.student_age}}</td>
+                    <td>{{s.joining_date}}</td>
+                    <td>{{s.course.course_name}}</td>
+                    <td>{{s.course.fee}}</td>
+                    <td>
+                        <a href="{% url 'editstudent' s.id %}"><i class="fas fa-edit"></i>Edit</a>
+                        <a href="{% url 'deletestudent' s.id %}"><i class="fas fa-trash"></i>Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table><br />
+    </center>
+    <a href="{% url 'admin_home' %}" class="btn btn-outline-secondary " style="margin-left: 45vw; margin-top: 1vw;">Back</a>
+</body>
+
+</html>

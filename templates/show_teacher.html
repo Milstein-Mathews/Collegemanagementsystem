@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+        integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <title>Student Details</title>
+    <style>
+        body {
+
+            font-family: 'Times New Roman', Times, serif;
+            background-color: aliceblue;
+
+        }
+
+        .table {
+            font-size: 1.5vw;
+            margin-top: 1vw;
+        }
+
+        h2 {
+            font-size: 3vw;
+
+        }
+    </style>
+</head>
+
+<body>
+
+    <center>
+        <h2>Show Teacher Details</h2>
+        <table class="table table-borderless table-striped table-hover table-bordered ">
+            <thead class="thead-primary">
+                <tr>
+                    <td>First Name</td>
+                    <td>Last Name</td>
+                    <td>User Name</td>
+                    <td>Address</td>
+                    <td>Age</td>
+                    <td>Email</td>
+                    <td>Contact Number</td>
+                    <td>Photo</td>
+                    <td>Course</td>
+                    <td>Action</td>
+                </tr>
+            </thead>
+            <tbody>
+                {% for t in teacher %}
+                <tr>
+                    <td>{{t.user.first_name}}</td>
+                    <td>{{t.user.last_name}}</td>
+                    <td>{{t.user.username}}</td>
+                    <td>{{t.address}}</td>
+                    <td>{{t.age}}</td>
+                    <td>{{t.user.email}}</td>
+                    <td>{{t.contact_number}}</td>
+                    <td>{{t.image}} <br>
+                        <img src="{{t.image.url }}" class="img-fluid" style="width: 10vw;" >
+                    </td>
+                    <td>{{t.course.course_name}}</td>
+                    <td>
+                        <a href="{% url 'deleteteacher' t.user.id %}"><i class="fas fa-trash"></i>Delete</a>
+                    </td> 
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table><br />
+    </center>
+    <a href="{% url 'admin_home' %}" class="btn btn-secondary " style="margin-left: 45vw; margin-top: 1vw;">Back</a>
+</body>
+
+</html>

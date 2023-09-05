@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <style>
+        .signup {
+            margin-left: 37vw;
+            margin-right: 40vw;
+            margin-top: 4vw;
+            background-color: white;
+            border-radius: 20px;
+        }
+
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            background-color: beige;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            background-size: 100vw 100vh;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+        <!-- Brand -->
+        {% comment %} <a class="navbar-brand" href="{% url 'home' %}">Home</a> {% endcomment %}
+
+        <!-- Toggler/collapsibe Button -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Navbar links -->
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'home' %}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'signin1' %}">Signin</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'add_teacher'%}">Signup</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    {% for message in messages %}
+    <h5>
+        <div  style="width: 20%; color: rgb(165, 42, 42); margin-left: 25vw; margin-top: 5vw; background-color: yellow;">
+            {{ message }}
+        </div>
+    </h5>
+        {% endfor %}
+    </div>
+    <div class="signup"><b>
+        <h2 style="text-align: center;"> Signup</h2>
+        <div class="card-body">
+            <form enctype="multipart/form-data" action="{% url 'add_teacher' %}" method='post'>
+                {% csrf_token %} 
+                <div class="was-validated">
+
+                    <div class="form-group">
+                        <label for="firstname">First Name:</label>
+                        <input class="form-control" type="text" name="firstname" id="firstname"
+                            placeholder="Enter First Name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="lastname">Last Name:</label>
+                        <input class="form-control" type="text" name="lastname" id="lastname"
+                            placeholder="Enter Last Name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="username">User Name:</label>
+                        <input class="form-control" type="text" name="username" id="username"
+                            placeholder="Enter User Name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Password:</label>
+                        <input class="form-control" type="password" name="password" id="password"
+                            placeholder="Enter Password" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cfmpassword">Confirm Password:</label>
+                        <input class="form-control" type="password" name="cfmpassword" id="cfmpassword"
+                            placeholder="Enter Confirm Password" required>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="address">Address:</label><br>
+                        <textarea class="form-control" name="address" id="" cols="30" rows="3"
+                            placeholder="Enter Address" required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="age">Age:</label>
+                        <input class="form-control" type="text" name="age" id="age" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="mail">Email:</label>
+                        <input class="form-control" type="text" name="mail" id="mail" required>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="contact">Contact Number:</label>
+                        <input class="form-control" type="text" name="contact" id="contact" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Upload your Photo</label>
+                        <input type="file" name="file" id="file" accept="image/*"  required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="">Course</label>
+                        <select class="form-control" name="select" id="" >
+                            <!-- <option value="">Select Your Course</option> -->
+                            {% for c in course %}
+                            <option value="{{c.id}}">{{c.course_name}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <button class="btn btn-outline-secondary btn-block" type="submit">Sign Up</button>
+                    <br>
+
+                </div>
+            </form>
+        </div></b>
+    </div>
+
+
+</body>
+
+</html>

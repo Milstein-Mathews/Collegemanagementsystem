@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>profile</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <style>
+
+
+        form {
+            margin-top: 100px;
+            background-color:bisque;
+            margin-left: 38vw;
+            margin-right: 38vw;
+        }
+        body{
+            font-family: 'Times New Roman', Times, serif;
+            background-color: antiquewhite;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+             background-size: 100vw 100vh;
+        }
+        table,td,th{
+            padding-left: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <form>
+            <b><label for="" id="name" style="margin-left: 6vw;">{{ teacher.user.username }} </label> </b><br>
+
+            <table>
+
+                <tr>
+                    <td>First Name:</td>
+                    <td>{{ teacher.user.first_name }}</td> 
+                </tr> 
+
+                <tr>
+                    <td>Last Name:</td>
+                    <td>{{ teacher.user.last_name }}</td>
+                </tr>
+
+                <tr>
+                    <td>Address:</td>
+                    <td>{{ teacher.address }}</td>
+                </tr>
+                <tr>
+                    <td>Age:</td>
+                    <td>{{ teacher.age }}</td>
+                </tr>
+                <tr>
+                    <td>Email Address:</td>
+                    <td>{{ teacher.user.email }}</td>
+                </tr>
+                <tr>
+                    <td>Contact Number:</td>
+                    <td>{{ teacher.contact_number }}</td>
+                </tr>
+                <tr>
+                    <td>Image:</td>
+                    <td>{{ teacher.image }} <br>
+                        <img src="{{teacher.image.url }}" class="img-fluid" style="width: 10vw;">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Course:</td>
+                    <td>{{ teacher.course.course_name }}</td>
+                </tr>
+
+            </table>
+            <br>
+
+
+    </form>
+    <a href="{% url 'teacher_home' %}" class="btn btn-outline-secondary " style="margin-left: 45vw; margin-top: 1vw;">Back</a>
+</body>
+
+</html>

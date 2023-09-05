@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Student</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            background-image: url('{% static "images/studentimg04.avif" %}');
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            background-size: 100vw 100vh;
+        }
+
+        .student {
+            margin-left: 40vw;
+            margin-right: 33vw;
+            margin-top: 5vw;
+            background-color:bisque;
+            border-radius: 1vw;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="student"><br>
+        <h2 style="text-align: center;"><b>Add Student </b></h2>
+        <div class="card-body">
+            <form action="{% url 'add_studenturl' %}" method="post">
+                {% csrf_token %}
+                <div class="was-validated">
+                    <div class="form-group"><br>
+                        <input class="form-control" type="text" name="name" id="name" placeholder="Enter Student Name"
+                            required>
+                    </div>
+
+                    <div class="form-group"><br>
+                        <input class="form-control" type="text" name="address" id="address"
+                            placeholder="Enter Student Address" required>
+                    </div>
+
+                    <div class="form-group"><br>
+                        <input class="form-control" type="number" name="age" id="age" placeholder="Enter Student Age"
+                            required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="date"><b>Joining Date:</b></label>
+                        <input class="form-control" type="date" name="date" id="date" placeholder="Enter Joining Date"
+                            required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for=""><b>Course</b></label>
+                        <select class="form-control" name="select" id="">
+                            <!-- <option value="">Select Your Course</option> -->
+                            {% for c in course %}
+                            <option value="{{c.id}}">{{c.course_name}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn btn-outline-secondary" id="submit" style="width: 290px;">Submit</button>
+                </div>
+                <a href="{% url 'admin_home' %}" class="btn btn-outline-info " style="margin-left: 8vw; margin-top: 2vw;">Back</a>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>
